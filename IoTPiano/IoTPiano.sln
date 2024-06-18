@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PianoUI", "PianoUI\PianoUI.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PianoUI.Desktop", "PianoUI.Desktop\PianoUI.Desktop.csproj", "{A6AB1295-673C-4AB9-BBD1-44CB7607042B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PianoNetworker", "PianoNetworker\PianoNetworker.csproj", "{2916BD94-80B6-473B-925A-1CCCAF4232DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PianoProcessor", "PianoProcessor\PianoProcessor.csproj", "{DEC38B2C-EACB-4471-8DC8-FD3D208198ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{A6AB1295-673C-4AB9-BBD1-44CB7607042B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6AB1295-673C-4AB9-BBD1-44CB7607042B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6AB1295-673C-4AB9-BBD1-44CB7607042B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2916BD94-80B6-473B-925A-1CCCAF4232DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2916BD94-80B6-473B-925A-1CCCAF4232DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2916BD94-80B6-473B-925A-1CCCAF4232DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2916BD94-80B6-473B-925A-1CCCAF4232DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC38B2C-EACB-4471-8DC8-FD3D208198ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC38B2C-EACB-4471-8DC8-FD3D208198ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC38B2C-EACB-4471-8DC8-FD3D208198ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC38B2C-EACB-4471-8DC8-FD3D208198ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
