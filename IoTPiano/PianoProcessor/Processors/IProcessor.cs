@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace PianoUI.Models.Processors;
 
-namespace PianoUI.Models.Processors
+public interface IProcessor
 {
-    internal interface IProcessor
-    {
-    }
+    void PlayTest();
 }

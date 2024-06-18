@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace PianoNetworker.Http;
 
-namespace PianoNetworker.Http
+internal interface IHttp
 {
-    internal interface IHttp
-    {
-    }
 }
