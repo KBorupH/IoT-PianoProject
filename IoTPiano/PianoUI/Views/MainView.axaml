@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:PianoUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PianoUI.Views.MainView"
+             x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainViewModel />
+	</Design.DataContext>
+	<RelativePanel>
+		<Border x:Name="BtnPnl" Padding="50" Height="200" BoxShadow="5 5 10 0 DarkGray">
+			<RelativePanel>
+				<Button x:Name="BtnOff" Content="Off" Margin="0,0,20,0"/>
+				<Button x:Name="BtnRmtLv" Content="Remote Live" Margin="0,0,20,0" RelativePanel.RightOf="BtnOff"/>
+				<Button x:Name="BtnRmtCtrl" Content="Remote Control" Margin="0,0,20,0" RelativePanel.RightOf="BtnRmtLv"/>
+				<Button x:Name="BtnShtPl" Content="Sheet play" Margin="0,0,20,0" RelativePanel.RightOf="BtnRmtCtrl"/>
+				<Button x:Name="BtnMnlPl" Content="Manual play" Margin="0,0,20,0" RelativePanel.RightOf="BtnShtPl"/>
+			</RelativePanel>
+		</Border>
+
+		<RelativePanel x:Name="DataPnl" RelativePanel.Below="BtnPnl">
+			<TextBlock Padding="50" Text="{Binding Greeting}"/>
+		</RelativePanel>
+	</RelativePanel>
+</UserControl>
