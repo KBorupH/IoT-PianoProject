@@ -14,8 +14,16 @@ namespace Piano.Processor.Processors
     {
         private readonly GpioController _controller;
         private Dictionary<byte, byte> _notePinoutPairs;
+        //Hz for sg90 servo
+        private int frequency = 50;
+        //Period is one cycle
+        private int period;
+        double dutyCycleHigh = 10;
+        double dutyCycleLow = 5;
         public RaspPiCSharp()
         {
+            
+            period = 1000/frequency;
             _controller = new GpioController();
             LoadPins();
         }
@@ -45,15 +53,29 @@ namespace Piano.Processor.Processors
             {
                 foreach (var midiEvent in track)
                 {
-                    if (midiEvent.CommandCode == MidiCommandCode.NoteOn)
+                    var noteEvent = midiEvent as NoteEvent;
+                    switch (midiEvent.CommandCode)
                     {
-                        var noteEvent = midiEvent as NoteEvent;
-                        _controller.Write(_notePinoutPairs[(byte)noteEvent.NoteNumber], PinValue.High);
-                        Console.WriteLine(noteEvent.NoteNumber);
-
+                        case MidiCommandCode.NoteOn:
+                            SetServoAngle(_controller, _notePinoutPairs[(byte)noteEvent.NoteNumber], dutyCycleHigh, period);
+                            break;
+                        case MidiCommandCode.NoteOff:
+                            SetServoAngle(_controller, _notePinoutPairs[(byte)noteEvent.NoteNumber], dutyCycleLow, period);
+                            break;
                     }
+                    Thread.Sleep((int)(noteEvent.AbsoluteTime/1000));
                 }
             }
+        }
+        private void SetServoAngle(GpioController gpioController, int pin, double dutyCycle, int period)
+        {
+            int highTime = (int)(period * (dutyCycle / 100.0));
+            int lowTime = period - highTime;
+
+            gpioController.Write(pin, PinValue.High);
+            Thread.Sleep(highTime);
+            gpioController.Write(pin, PinValue.Low);
+            Thread.Sleep(lowTime);
         }
     }
 }
