@@ -1,21 +1,23 @@
 ﻿using NAudio.Midi;
 using Newtonsoft.Json;
 using PianoProcessor.Models;
-using PianoUI.Models.Processors;
+using System;
+using System.Collections.Generic;
 using System.Device.Gpio;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PianoProcessor
+namespace Piano.Processor.Processors
 {
-    public class RaspPi : IProcessor
+    internal class RaspPiCSharp
     {
         private readonly GpioController _controller;
         private Dictionary<byte, byte> _notePinoutPairs;
-        public RaspPi()
+        public RaspPiCSharp()
         {
             _controller = new GpioController();
             LoadPins();
-           
-
         }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace PianoProcessor
             {
                 _controller.OpenPin(note.Value, PinMode.Output);
             }
-            
+
         }
         public void PlayTest()
         {
@@ -48,7 +50,7 @@ namespace PianoProcessor
                         var noteEvent = midiEvent as NoteEvent;
                         _controller.Write(_notePinoutPairs[(byte)noteEvent.NoteNumber], PinValue.High);
                         Console.WriteLine(noteEvent.NoteNumber);
-                        
+
                     }
                 }
             }

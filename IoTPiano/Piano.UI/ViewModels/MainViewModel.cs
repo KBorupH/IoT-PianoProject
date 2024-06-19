@@ -1,4 +1,7 @@
-﻿namespace PianoUI.ViewModels;
+﻿using Piano.UI.Models;
+using System.Windows.Input;
+
+namespace PianoUI.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {

@@ -2,5 +2,5 @@
 
 public interface IProcessor
 {
-    void PlayTest();
+
 }
