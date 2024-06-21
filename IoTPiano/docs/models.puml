@@ -1,0 +1,13 @@
+@startuml name
+{
+    "NoteOn": true,
+    "Note": 81,
+    "Velocity": 127,
+    "Time": 600 
+}
+
+{
+    "81": 1,
+    "80": 1
+}
+@enduml
