@@ -8,5 +8,6 @@ namespace PianoUI.Models.Networks
 {
     internal interface INetworking
     {
+        public void Setup();
     }
 }
