@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace PianoUI.Views;
+namespace Piano.UI.Views;
 
 public partial class MainView : UserControl
 {
@@ -8,6 +8,4 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
     }
-
-
 }

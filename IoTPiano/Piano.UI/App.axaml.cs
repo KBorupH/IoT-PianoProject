@@ -2,10 +2,10 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
-using PianoUI.ViewModels;
-using PianoUI.Views;
+using Piano.UI.ViewModels;
+using Piano.UI.Views;
 
-namespace PianoUI;
+namespace Piano.UI;
 
 public partial class App : Application
 {

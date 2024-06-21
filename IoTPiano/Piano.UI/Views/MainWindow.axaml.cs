@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace PianoUI.Views;
+namespace Piano.UI.Views;
 
 public partial class MainWindow : Window
 {

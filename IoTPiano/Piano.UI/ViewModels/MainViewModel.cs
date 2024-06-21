@@ -1,7 +1,7 @@
 ﻿using Piano.UI.Models;
 using System.Windows.Input;
 
-namespace PianoUI.ViewModels;
+namespace Piano.UI.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {

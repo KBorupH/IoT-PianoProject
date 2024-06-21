@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 
-namespace PianoUI.ViewModels;
+namespace Piano.UI.ViewModels;
 
 public class ViewModelBase : ReactiveObject
 {
