@@ -1,0 +1,31 @@
+@startuml class
+
+class PlayableNote {
+    Note Note
+    int Velocity
+    int Time
+}
+
+PlayableNote o-> Note
+
+class MusicSheet {
+    string Name
+    TimeSpan Duration
+    PlayableNote[] Notes
+}
+
+MusicSheet *-> PlayableNote 
+
+enum Note {
+    A
+    B
+    C
+    D
+    E
+    G
+    ...
+}
+
+
+
+@enduml
