@@ -2,5 +2,5 @@
 
 public interface IProcessor
 {
-
+    public void PlayNote(string note);
 }
