@@ -6,70 +6,27 @@
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="300"
              x:Class="Piano.UI.Views.MainView"
              x:DataType="vm:MainViewModel"
-			 xmlns:view="clr-namespace:Piano.UI.Views;assembly=Piano.UI">
+			 xmlns:views="clr-namespace:Piano.UI.Views">
 	<Design.DataContext>
 		<!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
 		<vm:MainViewModel />
 	</Design.DataContext>
-	
-	<RelativePanel>
-		
-		<Border x:Name="BtnPnl" Padding="20" Height="80" Width="650" BoxShadow="5 5 10 0 DarkGray">
 
+	<StackPanel Orientation="Vertical" Spacing="10">
+		<Border x:Name="BtnPnl" Padding="20" Height="80" Width="650" BoxShadow="5 5 10 0 DarkGray">
 			<StackPanel Orientation="Horizontal" Spacing="40">
 				<!--<Button x:Name="BtnRmtLv" Content="Remote Live" Margin="0,0,20,0"/>-->
-				<Button x:Name="BtnStop" Content="Stop" Margin="100,0,0,0"/>
-				<Button x:Name="BtnRemote" Content="Remote" Margin="0,0,0,0"/>
-				<Button x:Name="BtnShtPl" Content="Sheets" Margin="0,0,0,0"/>
-				<Button x:Name="BtnMnlPl" Content="Manual play" Margin="0,0,0,0"/>				
+				<!--<Button x:Name="BtnStop" Content="Stop" Margin="100,0,0,0"/>-->
+				<Button x:Name="BtnRemote" Content="Remote" Click="OnButtonClick"/>
+				<Button x:Name="BtnShtPl" Content="Sheets" Click="OnButtonClick"/>
+				<Button x:Name="BtnMnlPl" Content="Manual play" Click="OnButtonClick"/>
 			</StackPanel>
-			
-			<!--<RelativePanel>
-				<Button x:Name="BtnOff" Content="Off" Margin="0,0,20,0"/>
-				<Button x:Name="BtnRmtLv" Content="Remote Live" Margin="0,0,20,0" RelativePanel.RightOf="BtnOff"/>
-				<Button x:Name="BtnRmtCtrl" Content="Remote Control" Margin="0,0,20,0" RelativePanel.RightOf="BtnRmtLv"/>
-				<Button x:Name="BtnShtPl" Content="Sheet play" Margin="0,0,20,0" RelativePanel.RightOf="BtnRmtCtrl"/>
-				<Button x:Name="BtnMnlPl" Content="Manual play" Margin="0,0,20,0" RelativePanel.RightOf="BtnShtPl"/>
-			</RelativePanel>-->
-			
 		</Border>
+		<ContentControl x:Name="content">
+			<views:ManualPlayControl />
+		</ContentControl>
 
-
-
-		<RelativePanel x:Name="DataPnl" RelativePanel.Below="BtnPnl">
-
-			<!--<StackPanel Margin="40, 50" Orientation="Horizontal" Spacing="20">
-
-				<ComboBox SelectedIndex="0" MaxDropDownHeight="100" Width="300">
-					<ComboBoxItem>Sheet 1</ComboBoxItem>
-					<ComboBoxItem>Sheet 2</ComboBoxItem>
-					<ComboBoxItem>Sheet 3</ComboBoxItem>
-				</ComboBox>
-
-				<Button x:Name="BtnPlaySheet" Content="Play"></Button>
-
-			</StackPanel>-->
-
-			<view:ManualPlayControl ></view:ManualPlayControl>
-
-			<!--<StackPanel Margin="40, 50" Orientation="Horizontal" Spacing="20">
-
-				<Button x:Name="BtnPianoKeyA" Content="A"></Button>
-				<Button x:Name="BtnPianoKeyB" Content="B"></Button>
-				<Button x:Name="BtnPianoKeyC" Content="C"></Button>
-				<Button x:Name="BtnPianoKeyD" Content="D"></Button>
-				<Button x:Name="BtnPianoKeyE" Content="E"></Button>
-				<Button x:Name="BtnPianoKeyF" Content="F"></Button>
-				<Button x:Name="BtnPianoKeyG" Content="G"></Button>
-				<Button x:Name="BtnPianoKeyH" Content="H"></Button>
-
-			</StackPanel>-->
-
-			<!--<TextBlock Padding="50" Text="{Binding Greeting}"/>-->
-			
-		</RelativePanel>		
-		
-	</RelativePanel>
-	
+		<views:ManualPlayControl></views:ManualPlayControl>
+	</StackPanel>
 </UserControl>

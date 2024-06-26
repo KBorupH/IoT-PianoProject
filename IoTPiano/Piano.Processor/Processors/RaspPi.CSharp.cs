@@ -1,6 +1,7 @@
 ﻿using NAudio.Midi;
 using Newtonsoft.Json;
 using PianoProcessor.Models;
+using PianoUI.Models.Processors;
 using System;
 using System.Collections.Generic;
 using System.Device.Gpio;
@@ -10,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace Piano.Processor.Processors
 {
-    internal class RaspPiCSharp
+    internal class RaspPiCSharp : IProcessor
     {
         private readonly GpioController _controller;
-        private Dictionary<byte, byte> _notePinoutPairs;
+        private Dictionary<string, byte> _notePinoutPairs;
         //Hz for sg90 servo
         private int frequency = 50;
         //Period is one cycle
@@ -34,7 +35,7 @@ namespace Piano.Processor.Processors
         private void LoadPins()
         {
             //Read Json
-            var pinString = File.ReadAllText("NotePinoutPairs.json");
+            var pinString = File.ReadAllText("RaspNotePinoutPairs.json");
             //Assign to dictionary
             NotePinoutModel notePinoutModel = JsonConvert.DeserializeObject<NotePinoutModel>(pinString);
             _notePinoutPairs = notePinoutModel.NotePinoutPairs;
@@ -45,6 +46,17 @@ namespace Piano.Processor.Processors
             }
 
         }
+
+        public void PlayNote(string noteMessage)
+        {
+            SetServoAngle(_controller, _notePinoutPairs[noteMessage], dutyCycleHigh, period);
+        }
+
+        public void StopNote(string noteMessage)
+        {
+            SetServoAngle(_controller, _notePinoutPairs[noteMessage], dutyCycleLow, period);
+        }
+
         public void PlayTest()
         {
             var midiFile = new MidiFile("test.mid");
@@ -57,16 +69,17 @@ namespace Piano.Processor.Processors
                     switch (midiEvent.CommandCode)
                     {
                         case MidiCommandCode.NoteOn:
-                            SetServoAngle(_controller, _notePinoutPairs[(byte)noteEvent.NoteNumber], dutyCycleHigh, period);
+                            SetServoAngle(_controller, _notePinoutPairs[noteEvent.NoteNumber.ToString()], dutyCycleHigh, period);
                             break;
                         case MidiCommandCode.NoteOff:
-                            SetServoAngle(_controller, _notePinoutPairs[(byte)noteEvent.NoteNumber], dutyCycleLow, period);
+                            SetServoAngle(_controller, _notePinoutPairs[noteEvent.NoteNumber.ToString()], dutyCycleLow, period);
                             break;
                     }
                     Thread.Sleep((int)(noteEvent.AbsoluteTime/1000));
                 }
             }
         }
+
         private void SetServoAngle(GpioController gpioController, int pin, double dutyCycle, int period)
         {
             int highTime = (int)(period * (dutyCycle / 100.0));

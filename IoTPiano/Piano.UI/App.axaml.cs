@@ -2,6 +2,7 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
+using Piano.Domain.Services;
 using Piano.UI.ViewModels;
 using Piano.UI.Views;
 
@@ -21,23 +22,27 @@ public partial class App : Application
         var collection = new ServiceCollection();
 
         collection.AddTransient<MainViewModel>();
+        collection.AddTransient<IMusicService>();
+
 
         // Creates a ServiceProvider containing services from the provided IServiceCollection
         var services = collection.BuildServiceProvider();
 
-        var vm = services.GetRequiredService<MainViewModel>();
+        var mainViewVM = services.GetRequiredService<MainViewModel>();
+
+
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = new MainWindow
             {
-                DataContext = vm
+                DataContext = mainViewVM
             };
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
             singleViewPlatform.MainView = new MainView
             {
-                DataContext = vm
+                DataContext = mainViewVM
             };
         }
 

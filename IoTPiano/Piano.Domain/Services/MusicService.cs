@@ -15,5 +15,10 @@ namespace Piano.Domain.Services
         {
             _processor.PlayNote(note);
         }
+
+        public void StopNote(string note)
+        {
+            _processor.StopNote(note);
+        }
     }
 }

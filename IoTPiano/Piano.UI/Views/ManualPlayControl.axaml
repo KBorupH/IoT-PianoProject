@@ -3,13 +3,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="200"
-             x:Class="Piano.UI.Views.ManualPlayControl">
-
+             x:Class="Piano.UI.Views.ManualPlayControl"
+			 xmlns:i="using:Avalonia.Xaml.Interactivity"
+             xmlns:ia="using:Avalonia.Xaml.Interactions.Core">
 	<Canvas>
 
 		<StackPanel Margin="100, 40" Orientation="Horizontal">
 
-			<Button  Background="AntiqueWhite" Foreground="Black" x:Name="BtnPianoKeyA" VerticalContentAlignment="Bottom" Content="A" Height="120"></Button>
+			<Button Background="AntiqueWhite" Foreground="Black" x:Name="BtnPianoKeyA" VerticalContentAlignment="Bottom" Content="A" Height="120">
+				<i:Interaction.Behaviors>
+					<ia:EventTriggerBehavior EventName="PreviewMouseDown" SourceObject="{Binding #BtnPianoKeyA}">
+						<ia:InvokeCommandAction Command="{Binding DownCmd}"/>
+					</ia:EventTriggerBehavior>
+					<ia:EventTriggerBehavior EventName="PreviewMouseUp" SourceObject="{Binding #BtnPianoKeyA}">
+						<ia:InvokeCommandAction Command="{Binding UpCmd}"/>
+					</ia:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+			</Button>
 			<Button Background="AntiqueWhite" Foreground="Black" x:Name="BtnPianoKeyB" VerticalContentAlignment="Bottom" Content="B" Height="120"></Button>
 			<Button Background="AntiqueWhite" Foreground="Black" x:Name="BtnPianoKeyC" VerticalContentAlignment="Bottom" Content="C" Height="120"></Button>
 			<Button Background="AntiqueWhite" Foreground="Black" x:Name="BtnPianoKeyD" VerticalContentAlignment="Bottom" Content="D" Height="120"></Button>
@@ -28,9 +38,6 @@
 			<Button Background="Black" Foreground="White" x:Name="BtnPianoKeyL" VerticalContentAlignment="Bottom" Content="L" Height="60"></Button>
 
 		</StackPanel>
-		
+
 	</Canvas>
-
-
-
 </UserControl>
